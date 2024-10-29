@@ -1,0 +1,51 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[,] matriz = new int[5, 5];
+        int sumaPerimetro = 0;
+        int contadorPerimetro = 0;
+
+        Console.WriteLine("Ingrese 25 números entre 10 y 90:");
+
+        // Llenado de la matriz
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                int numero;
+                do
+                {
+                    Console.Write($"Número para posición ({i},{j}): ");
+                    numero = Convert.ToInt32(Console.ReadLine());
+                } while (numero < 10 || numero > 90);
+                matriz[i, j] = numero;
+
+                // Verificar si está en el perímetro
+                if (i == 0 || i == 4 || j == 0 || j == 4)
+                {
+                    sumaPerimetro += numero;
+                    contadorPerimetro++;
+                }
+            }
+        }
+
+        // Mostrar la matriz
+        Console.WriteLine("\nMatriz:");
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                Console.Write(matriz[i, j] + "\t");
+            }
+            Console.WriteLine();
+        }
+
+        // Calcular y mostrar el promedio
+        double promedioPerimetro = (double)sumaPerimetro / contadorPerimetro;
+        Console.WriteLine($"\nSuma del perímetro: {sumaPerimetro}");
+        Console.WriteLine($"Promedio del perímetro: {promedioPerimetro:F2}");
+    }
+}
